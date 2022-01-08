@@ -76,10 +76,12 @@ class Running(Training):
     def get_spent_calories(self) -> float:
         # Формула: (18 * средняя_скорость - 20) *
         # вес_спортсмена / M_IN_KM * время_тренировки_в_минутах
-        calories: float = ((Training.coeff_calorie_running_1 *
-                           self.get_mean_speed() -
-                           Training.coeff_calorie_running_2) * self.weight /
-                           Training.M_IN_KM * (self.duration * self.H_IN_MIN))
+        calories: float = ((Training.coeff_calorie_running_1
+                            * self.get_mean_speed()
+                            - Training.coeff_calorie_running_2)
+                           * self.weight
+                           / Training.M_IN_KM
+                           * (self.duration * self.H_IN_MIN))
         return calories
 
     pass
@@ -95,11 +97,12 @@ class SportsWalking(Training):
     def get_spent_calories(self) -> float:
         # Формула: (0.035 * вес + (средняя_скорость**2 // рост) *
         # 0.029 * вес) * время_тренировки_в_минутах
-        calories: float = ((Training.coeff_calorie_walking_1 * self.weight +
-                           (self.get_mean_speed() **
-                            Training.coeff_calorie_general // self.height) *
-                           Training.coeff_calorie_walking_2 * self.weight) *
-                           self.duration * self.H_IN_MIN)
+        calories: float = ((Training.coeff_calorie_walking_1
+                            * self.weight + (self.get_mean_speed()
+                                             ** Training.coeff_calorie_general
+                                             // self.height)
+                            * Training.coeff_calorie_walking_2 * self.weight)
+                           * self.duration * self.H_IN_MIN)
         return calories
 
     pass
@@ -122,9 +125,9 @@ class Swimming(Training):
 
     def get_spent_calories(self) -> float:
         # Формула: (средняя_скорость + 1.1) * 2 * вес
-        calories: float = ((self.get_mean_speed() +
-                           Training.coeff_calorie_swimming_1) *
-                           Training.coeff_calorie_general * self.weight)
+        calories: float = ((self.get_mean_speed()
+                            + Training.coeff_calorie_swimming_1)
+                           * Training.coeff_calorie_general * self.weight)
         return calories
 
     pass
